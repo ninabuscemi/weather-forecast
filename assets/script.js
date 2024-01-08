@@ -1,5 +1,3 @@
-// script.js
-
 const searchForm = document.getElementById('search-form');
 const searchInput = document.getElementById('search-input');
 const currentWeatherContainer = document.getElementById('current-weather-container');
@@ -14,16 +12,20 @@ searchForm.addEventListener('submit', (e) => {
 
 function getWeatherData(city) {
   // Make an API call to retrieve weather data for the given city
-  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=14ec03d561bda5cbf662d09c82f23b1e
-  `)
+  fetch(`https://api.tomorrow.io/v4/timelines?location=${city}&fields=temperature_2m,humidity_2m,windspeed_10m&apikey=xw91YMX9d3ni9Uqdi3TaPGyIATNGZwsg`)
     .then(response => response.json())
     .then(data => {
       // Update the currentWeatherContainer with the retrieved data
+      const timeline = data.data.timelines[0];
+      const temperature = timeline.intervals[0].values.temperature_2m;
+      const humidity = timeline.intervals[0].values.humidity_2m;
+      const windSpeed = timeline.intervals[0].values.windspeed_10m;
+
       currentWeatherContainer.innerHTML = `
-        <h2>${data.name}</h2>
-        <p>Temperature: ${data.main.temp}°C</p>
-        <p>Humidity: ${data.main.humidity}%</p>
-        <p>Wind Speed: ${data.wind.speed} m/s</p>
+        <h2>${city}</h2>
+        <p>Temperature: ${temperature}°C</p>
+        <p>Humidity: ${humidity}%</p>
+        <p>Wind Speed: ${windSpeed} m/s</p>
       `;
     })
     .catch(error => {
@@ -31,19 +33,21 @@ function getWeatherData(city) {
     });
 
   // Make another API call to retrieve forecast data for the given city
-  fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=14ec03d561bda5cbf662d09c82f23b1e
-  `)
+  fetch(`https://api.tomorrow.io/v4/timelines?location=${city}&fields=temperature_2m,humidity_2m,windspeed_10m&apikey=xw91YMX9d3ni9Uqdi3TaPGyIATNGZwsg`)
     .then(response => response.json())
     .then(data => {
       // Update the forecastContainer with the retrieved data
       forecastContainer.innerHTML = '';
 
-      for (let i = 0; i < data.list.length; i++) {
-        const forecast = data.list[i];
-        const date = new Date(forecast.dt * 1000);
-        const temperature = forecast.main.temp;
-        const humidity = forecast.main.humidity;
-        const windSpeed = forecast.wind.speed;
+      const timeline = data.data.timelines[0];
+      const intervals = timeline.intervals;
+
+      for (let i = 0; i < intervals.length; i++) {
+        const interval = intervals[i];
+        const date = new Date(interval.startTime);
+        const temperature = interval.values.temperature_2m;
+        const humidity = interval.values.humidity_2m;
+        const windSpeed = interval.values.windspeed_10m;
 
         forecastContainer.innerHTML += `
           <div class="forecast-item">
