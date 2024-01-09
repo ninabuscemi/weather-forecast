@@ -1,24 +1,28 @@
 const searchForm = document.getElementById('search-form');
-const searchInput = document.getElementById('search-input');
+const cityInput = document.getElementById('city-input');
+const stateInput = document.getElementById('state-input');
 const currentWeatherContainer = document.getElementById('current-weather-container');
 const forecastContainer = document.getElementById('forecast-container');
 
 searchForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  const city = searchInput.value;
-  getWeatherData(city);
-  searchInput.value = '';
+  const city = cityInput.value;
+  const state = stateInput.value;
+  getWeatherData(city, state);
+  cityInput.value = '';
+  stateInput.value = '';
 });
-function getWeatherData(city) {
+
+function getWeatherData(city, state) {
   const apiKey = '14ec03d561bda5cbf662d09c82f23b1e'; // Replace with your actual API key
 
-  const [cityPart, statePart] = city.split(',').map(part => part.trim());
-  const capitalizedCity = cityPart.charAt(0).toUpperCase() + cityPart.slice(1);
-  const capitalizedState = statePart ? statePart.charAt(0).toUpperCase() + statePart.slice(1) : '';
+  const capitalizedCity = city.charAt(0).toUpperCase() + city.slice(1);
+  const capitalizedState = state ? state.charAt(0).toUpperCase() + state.slice(1) : '';
+
   const formattedLocation = capitalizedState ? `${capitalizedCity}, ${capitalizedState}` : capitalizedCity;
 
-  // Make an API call to retrieve current weather data for the given city
-  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
+  // Make API calls to retrieve current weather and forecast data for the given city
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${state}&appid=${apiKey}&units=metric`)
     .then(response => response.json())
     .then(data => {
       // Update the currentWeatherContainer with the retrieved data
@@ -37,8 +41,7 @@ function getWeatherData(city) {
       console.error('Error:', error);
     });
 
-  // Make another API call to retrieve forecast data for the given city
-  fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`)
+  fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city},${state}&appid=${apiKey}&units=metric`)
     .then(response => response.json())
     .then(data => {
       // Update the forecastContainer with the retrieved data
