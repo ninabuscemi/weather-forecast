@@ -1,31 +1,35 @@
-/* style.css */
-
+/* Reset default margin and padding for the entire page */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
 }
 
+/* Header styling */
 header {
-  background-color: #5178db;
-  color: #fff;
+  background-color: #5178db; /* Set the background color of the header */
+  color: #fff; /* Set the text color of the header */
   padding: 20px;
   text-align: center;
 }
 
+/* Reset margin for h1 inside the header */
 h1 {
   margin: 0;
 }
 
+/* Styling for the search form */
 #search-form {
   margin-top: 20px;
 }
 
+/* Styling for search input */
 #search-input {
   padding: 5px;
   font-size: 16px;
 }
 
+/* Styling for current weather and forecast sections */
 #current-weather,
 #forecast {
   margin-top: 20px;
@@ -34,11 +38,13 @@ h1 {
   background-color: #cecece;
 }
 
+/* Reset margin for h2 inside current weather and forecast sections */
 #current-weather h2,
 #forecast h2 {
   margin: 0;
 }
 
+/* Styling for containers inside current weather and forecast sections */
 #current-weather-container,
 #forecast-container {
   display: flex;
@@ -46,6 +52,7 @@ h1 {
   justify-content: space-between;
 }
 
+/* Styling for individual weather cards */
 .weather-card {
   width: 200px;
   margin-bottom: 20px;
@@ -53,14 +60,17 @@ h1 {
   border: 1px solid #ccc;
 }
 
+/* Reset margin for h3 inside weather cards */
 .weather-card h3 {
   margin: 0;
 }
 
+/* Reset margin for paragraphs inside weather cards */
 .weather-card p {
   margin: 5px 0;
 }
 
+/* Additional styling for the forecast section */
 #forecast {
   background-color: #e0e0e0; /* Set desired background color */
 }
@@ -70,10 +80,11 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 80px; /* Set the height of header */
-  background-color: #333; /* Set the background color of header */
+  height: 80px; /* Set the height of the header */
+  background-color: #333; /* Set the background color of the header */
 }
 
+/* Styling for the search history container */
 .search-history-container {
   display: flex;
   overflow-x: auto;
@@ -82,6 +93,7 @@ h1 {
   justify-content: center;
 }
 
+/* Styling for individual search history entries */
 .search-history-entry {
   size: 10px;
   margin-right: 10px;
