@@ -46,23 +46,48 @@ function addToSearchHistory(city, state) {
   displaySearchHistory();
 }
 
+function removeFromSearchHistory(index) {
+  // Remove entry at the specified index
+  searchHistory.splice(index, 1);
+
+  // Save search history to local storage
+  localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+
+  // Display updated search history
+  displaySearchHistory();
+}
+
 function displaySearchHistory() {
   // Clear existing search history
   searchHistoryContainer.innerHTML = '';
 
   // Display each search history entry horizontally
-  for (const entry of searchHistory) {
+  searchHistory.forEach((entry, index) => {
     const entryElement = document.createElement('div');
     entryElement.classList.add('search-history-entry');
     entryElement.textContent = `${entry.city}, ${entry.state}`;
-    
+
     // Add click event listener to each entry
     entryElement.addEventListener('click', () => {
       getWeatherData(entry.city, entry.state);
     });
 
+    // Add close icon to each entry
+    const closeIcon = document.createElement('span');
+    closeIcon.classList.add('close-icon');
+    closeIcon.textContent = '✖'; // You can customize the close icon
+    closeIcon.addEventListener('click', (event) => {
+      event.stopPropagation(); // Prevent the entry click event from triggering
+      removeFromSearchHistory(index);
+    });
+
+    // Apply styles to the close icon
+    closeIcon.style.fontSize = '14px'; // Adjust the font size as needed
+    closeIcon.style.marginLeft = '5px'; // Add space between text and icon
+
+    entryElement.appendChild(closeIcon);
     searchHistoryContainer.appendChild(entryElement);
-  }
+  });
 }
 
 function getWeatherData(city, state) {
