@@ -1,8 +1,8 @@
-# Weather-Forecast
+# Weather Forecast Dashboard
 
 ## Description
 
-This is a weather dashboard application that allows users to search for the current weather and forecast for any city. The application utilizes server-side APIs to retrieve weather data from a third-party weather API.
+This is a weather forecast dashboard application that allows users to search for the current weather and forecast for any city. The application utilizes server-side APIs to retrieve weather data from a third-party weather API.
 
 ## Acceptance Criteria
 
