@@ -7,7 +7,7 @@ body {
 }
 
 header {
-  background-color: #5f3434;
+  background-color: #5178db;
   color: #fff;
   padding: 20px;
   text-align: center;
@@ -26,15 +26,12 @@ h1 {
   font-size: 16px;
 }
 
-#forecast {
-  background-color: #cecece; /* Set your desired background color */
-}
-
 #current-weather,
 #forecast {
   margin-top: 20px;
   padding: 20px;
   border: 1px solid #ccc;
+  background-color: #cecece;
 }
 
 #current-weather h2,
@@ -62,4 +59,33 @@ h1 {
 
 .weather-card p {
   margin: 5px 0;
+}
+
+#forecast {
+  background-color: #e0e0e0; /* Set your desired background color */
+}
+
+/* Add styles for the search history container and list */
+#search-history-container {
+  text-align: center;
+}
+
+#search-history-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+#search-history-list li {
+  margin-right: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+#search-history-list li:hover {
+  background-color: #e0e0e0;
 }

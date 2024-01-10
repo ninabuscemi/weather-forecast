@@ -7,9 +7,19 @@ const forecastContainer = document.getElementById('forecast-container');
 
 searchForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  const city = cityInput.value;
-  const state = stateInput.value;
+
+  const city = cityInput.value.trim();
+  const state = stateInput.value.trim();
+
+  // Validate city and state inputs
+  if (!city || !state) {
+    alert('Please enter both city and state.');
+    return;
+  }
+
   getWeatherData(city, state);
+
+  // Clear input fields after successful submission
   cityInput.value = '';
   stateInput.value = '';
 });
@@ -74,4 +84,5 @@ for (const forecast of filteredForecasts) {
     .catch(error => {
       console.error('Error:', error);
     });
+    
 }

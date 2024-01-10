@@ -14,15 +14,20 @@
   <header>
     <h1>Weather Dashboard</h1>
     <form id="search-form">
+      <label for="city-input">City:</label>
+      <input type="text" id="city-input">
 
-    <label for="city-input">City:</label>
-    <input type="text" id="city-input" required>
+      <label for="state-input">State:</label>
+      <input type="text" id="state-input">
 
-        <label for="state-input">State:</label>
-    <input type="text" id="state-input">
-    
       <button type="submit">Search</button>
     </form>
+    
+    <!-- Add the search history container -->
+<div id="search-history-container">
+  <h3>Search History:</h3>
+  <ul id="search-history-list"></ul>
+</div>
   </header>
 
   <main>
