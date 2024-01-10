@@ -26,7 +26,7 @@ THEN I am again presented with current and future conditions for that city
 
 Pushed the code into the github repository and deployed in into github pages. For review and grading purposes, the application is deployed at [(https://ninabuscemi.github.io/weather-forecast/)].
 
-[!](./assets/img/dashboard_screenshot.png)
+!["This website displays the weather dashboard forecast."](./assets/img/dashboard_screenshot.png)
 
 ## Contributing
 
