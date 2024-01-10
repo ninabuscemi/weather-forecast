@@ -7,7 +7,7 @@ body {
 }
 
 header {
-  background-color: #333;
+  background-color: #5f3434;
   color: #fff;
   padding: 20px;
   text-align: center;
@@ -24,6 +24,10 @@ h1 {
 #search-input {
   padding: 5px;
   font-size: 16px;
+}
+
+#forecast {
+  background-color: #cecece; /* Set your desired background color */
 }
 
 #current-weather,

@@ -4,6 +4,7 @@ const stateInput = document.getElementById('state-input');
 const currentWeatherContainer = document.getElementById('current-weather-container');
 const forecastContainer = document.getElementById('forecast-container');
 
+
 searchForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const city = cityInput.value;
@@ -52,21 +53,23 @@ function getWeatherData(city, state) {
       // Filter forecasts for every 24 hours for the next 5 days
       const filteredForecasts = forecasts.filter((forecast, index) => index % 8 === 0 && index < 40);
 
-      for (const forecast of filteredForecasts) {
-        const date = new Date(forecast.dt * 1000); // Convert timestamp to milliseconds
-        const temperature = forecast.main.temp;
-        const humidity = forecast.main.humidity;
-        const windSpeed = forecast.wind.speed;
+for (const forecast of filteredForecasts) {
+  const date = new Date(forecast.dt * 1000); // Convert timestamp to milliseconds
+  const temperature = forecast.main.temp;
+  const humidity = forecast.main.humidity;
+  const windSpeed = forecast.wind.speed;
+  const weatherIcon = forecast.weather[0].icon; // Get the weather icon code
 
-        forecastContainer.innerHTML += `
-          <div class="forecast-item">
-            <h3>${date.toLocaleDateString()}</h3>
-            <p>Temperature: ${temperature}°C</p>
-            <p>Humidity: ${humidity}%</p>
-            <p>Wind Speed: ${windSpeed} m/s</p>
-          </div>
-        `;
-      }
+  forecastContainer.innerHTML += `
+    <div class="forecast-item">
+      <h3>${date.toLocaleDateString()}</h3>
+      <p>Temperature: ${temperature}°C</p>
+      <p>Humidity: ${humidity}%</p>
+      <p>Wind Speed: ${windSpeed} m/s</p>
+      <img src="http://openweathermap.org/img/wn/${weatherIcon}.png" alt="Weather Icon">
+    </div>
+  `;
+}
     })
     .catch(error => {
       console.error('Error:', error);
